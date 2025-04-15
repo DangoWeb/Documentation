@@ -1,0 +1,216 @@
+![Quickstart](/banners/quickstart.png)
+
+By the end of this guide, you'll have:
+
+* 1 [DangoID](/docs/dangoid/get-started) Account
+* 1 Dango Portal Account
+* 1 [Free Domain](/docs/domains/free)
+* 1 [DirectAdmin](/docs/web-hosting/directadmin) Account
+* 1 Website w/ SSL
+* 1 Custom Domain Email Address
+
+## DangoID
+
+DangoID is the authentication system powering all Dango products. With a username and password, you'll have access to everything in this guide, and more.
+
+### Requirements
+
+To start, you'll need
+
+* a username and password in mind
+* your email address
+
+### Registration
+
+<Warning>You must be 13+ to sign up for a DangoID account.</Warning>
+
+Head over to [my.dangoweb.com](https://my.dangoweb.com/) and click "Signup Instead" below the login form. Proceed to enter a unique username, your email, your first and last name, and your password. Discord User ID is optional, however, recommended if you have a Discord account. If you choose to add an ID, format it as Snowflake (`1234567890`). Finally, solve the hCaptcha and click "Signup" to finish the process. You should then see a success message, and you may now log in with your chosen username and password.
+
+Alternatively, you may sign up with an external provider by clicking the button shown. Your username, email, name, and Discord ID are automatically collected and will be used to created your account.
+
+#### Errors
+
+If you encounter any errors during sign-up, first check that your username is all lowercase, containing only letters and numbers. Then, check that your email is correct and that your password contains all legal characters. If you chose to enter a Discord User ID, make sure it's a Snowflake. If there are still errors after checking these, check our [Status Page](https://status.dangoweb.com/) for system downtime, and then contact support as a last resort. We'll fix the issue as soon as possible.
+
+### Logging in
+
+Enter your chosen username and password from the previous step, and wait. Depending on our uptime and your region, the connection may take longer than usual. Once logged in, you'll be greeted with your avatar, and an alert asking you to continue the creation process by creating a Dango Portal account. This is essential for ordering any products from us. Once you log in to the Dango Portal for the first time, your sign-up process is complete. Return to MyDangoID, and you should see your setup progress with Dango Portal checked off. You have now successfully created and logged into your DangoID Account.
+
+If you chose to sign up with an external provider, simply log in with that provider by clicking the same button.
+
+#### Errors
+
+If you encounter issues on MyDangoID, first check the error message for any leads. Next, check that your username and password are valid. If everything looks good, there may be an error on our end and you should contact support. Getting error 500: `INTERNAL_SERVER_ERROR` may mean there's an error behind the scenes. First, check our [Status Page](https://status.dangoweb.com/) for downtime, then contact support to get an immediate explanation. If you can't log in to the Dango Portal, contact support.
+
+## Dango Portal
+
+Your Dango Portal account should be already set up from the last step. At the top right of your screen, you'll see your "Dangos", our currency. 100 Dangos equals exactly USD $1.00, and you can trade and redeem them. Dangos also can be won from our giveaways, events, or claimed on holidays using a coupon. 
+
+### Ordering
+
+<Warning>Free domains are currently unavailable. To continue, you must use a domain you already own.</Warning>
+
+Navigate to the homepage of the Dango Portal. Select "Basic Web Hosting", which is completely free. Free Hosting does not require renewal, and expires when you leave the Discord server, if you've linked an ID. Enter a free domain with whatever name and free TLD you choose. Most likely it'll be available, but if it's taken support will contact you. You can learn about all domain types [here](/docs/domains/about). If you already have a domain, type it in the field for an existing domain instead and do not fill in the new domain field. Add the product to the cart, and continue to checkout. At the checkout, place your order with Dangos. We'll use your DangoID username, password, and email for the Control Panel login. Account creation is not automatic yet, as we have to register your domain first. Look out for an email from "portal@dangoweb.com", that will contain all your login information. Don't worry about domain connection information, we've taken care of that because you chose to register a free domain with us.
+
+## DirectAdmin
+
+### Logging in
+
+To log in to the [DirectAdmin Control Panel](/docs/web-hosting/directadmin), you'll need your username and password. This should be your DangoID username and a random password unless your welcome email says otherwise. Once logged in, you should be presented with a page with all your features on the left, and your account limits on the right. You can always contact support to negotiate increased limits if they are needed.
+
+### SSL
+
+Once in the panel, navigate to the "SSL Certificates" feature, and select "Get automatic certificate from ACME Provider". Fill in the form with these details:
+
+- ACME Provider: `Let's Encrypt`
+- Common Name: `domain.tld` (your domain)
+- Wildcard: `No`
+- Key Size (bits): `EC-384`
+- Certificate Type: `SHA256`
+- Certificate Entries: `domain.tld`, `www.domain.tld`
+
+Once submitted, wait for an message containing SSL Certificate generation confirmation. Then, reload the page and toggle on "Force SSL with https redirect", and save. Our SSL Certificates auto-renew, so there's no need to stress about remembering to renew it. Finally, visit your domain and verify it shows a secure lock icon on the top left of your browser, and no warnings show up. Certificates may take up to 24 hours to work, so you may have to wait for it to register and reach your browser.
+
+### Creating a website
+
+Exit out of "SSL Certificates", and open "File Explorer". Open the "public_html" folder on the left. Your website files should appear in front of you. Open up "index.html", and replace all content with this:
+
+```html index.html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.108.0">
+    <title>Starter Template · Bootstrap v5.3</title>
+    <link rel="icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/favicon.ico">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+    <link href="https://getbootstrap.com/docs/5.3/examples/starter-template/starter-template.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="col-lg-8 mx-auto p-4 py-md-5">
+    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>
+            <span class="fs-4">Starter template</span>
+        </a>
+    </header>
+    <main>
+        <h1>Get started with Bootstrap</h1>
+        <p class="fs-5 col-md-8">Quickly and easily get started with Bootstrap's compiled, production-ready files with this barebones example featuring some basic HTML and helpful links. Download all our examples to get started.</p>
+        <div class="mb-5">
+            <a href="https://getbootstrap.com/docs/5.3/examples/" class="btn btn-primary btn-lg px-4">Download examples</a>
+        </div>
+        <hr class="col-3 col-md-2 mb-5">
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <h2>Starter projects</h2>
+                    <p>Ready to beyond the starter template? Check out these open source projects that you can quickly duplicate to a new GitHub repository.</p>
+                    <ul class="icon-list ps-0">
+                        <li class="d-flex align-items-start mb-1">
+                        <a href="https://github.com/twbs/bootstrap-npm-starter" rel="noopener" target="_blank">Bootstrap npm starter</a>
+                        </li>
+                        <li class="text-muted d-flex align-items-start mb-1">Bootstrap Parcel starter (coming soon!)</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h2>Guides</h2>
+                    <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
+                    <ul class="icon-list ps-0">
+                        <li class="d-flex align-items-start mb-1">
+                            <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap quick start guide</a>
+                        </li>
+                        <li class="d-flex align-items-start mb-1">
+                            <a href="https://getbootstrap.com/docs/5.3/getting-started/webpack/">Bootstrap Webpack guide</a>
+                        </li>
+                        <li class="d-flex align-items-start mb-1">
+                            <a href="https://getbootstrap.com/docs/5.3/getting-started/parcel/">Bootstrap Parcel guide</a>
+                        </li>
+                        <li class="d-flex align-items-start mb-1">
+                            <a href="https://getbootstrap.com/docs/5.3/getting-started/vite/">Bootstrap Vite guide</a>
+                        </li>
+                        <li class="d-flex align-items-start mb-1">
+                            <a href="https://getbootstrap.com/docs/5.3/getting-started/contribute/">Contributing to Bootstrap</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer class="pt-5 my-5 text-muted border-top">
+            Created by the Bootstrap team &middot; &copy; 2022
+        </footer>
+        </div>
+        <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js"></script>      
+    </body>
+</html>
+```
+
+Click save, and you now have an example Bootstrap website from [Bootstrap](https://getbootstrap.com)! If you already have a website, you can delete all files in the `public_html` folder and upload your website to the "public_html" folder. Once you've done that, reload your domain and you should see your website!
+
+### Creating a email address
+
+Close the "File Manager" tab, and open "E-mail Accounts". You should see one email address already there. It should look like `<username>@<domain.tld>`. On the free plan this is the only email account you can create, but you can contact support if you need more. All the way to the right, click the login icon and you'll be redirected to Roundcube, our online email client. If you choose to use another, like Apple Mail, Outlook, etc., contact support to get your connection details.
+
+## Finish
+
+You've reached the end of the quick setup guide! You should now know how to:
+
+* Log in to [DangoID](/docs/dangoid/get-started)
+* Log in to Dango Portal and place an order
+* Log in to and navigate [DirectAdmin](/docs/web-hosting/directadmin)
+* Import and edit a website
+
+If you would like to know more about specific topics, feel free to contact support! We're always happy to help!

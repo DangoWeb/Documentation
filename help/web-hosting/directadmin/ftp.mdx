@@ -1,0 +1,53 @@
+<Info>File Manager is built in to [DirectAdmin](/docs/web-hosting/directadmin) as an web alternative to FTP - no setup needed.</Info>
+
+## Log In to DirectAdmin
+
+[Log in](/help/web-hosting/directadmin/logging-in) to the [DirectAdmin](/docs/web-hosting/directadmin) control panel and navigate to the "FTP Management" tab.
+
+## Create FTP Account
+
+On the top right-hand side, click on the "Create FTP Account" button. You'll be prompted for your new account username, password, and access control. FTP account usernames are formatted to look like email addresses, and can be used to log into FTP in place of your original username or email. When logging in, use the full "email address", not only the username input part. If the domain is not the correct one, you may need to switch to the desired domain before creating the FTP account.
+
+Access control limits where the FTP account can access.
+
+- If you set it to Domain, it will be able to access all the domain's files, but not other files.
+- If you set it to FTP, it will be able to access all the domain's FTP files, but not other files. This protects against modifying the public domain files.
+- If you set it to User, it will be able to access all files.
+- If you set it to Custom, it will be able to access all files from a custom home directory.
+
+Once you finish, click "Create" and you will be provided with login details for the account. These can be used on any FTP program to log in and manage your files.
+
+<Frame caption="Create FTP Account">![Create FTP Account](/directadmin-create-ftp.png)</Frame>
+
+## Log In to FTP
+
+Locate your favorite FTP file manager program, whether online or downloaded - either can be used. You can connect using the below:
+
+Type: FTP\
+Host: `da.dangoweb.com`\
+Port: `21`\
+Username: FTP Account Username\
+Password: FTP Account Password
+
+<Frame caption="Log In to FTP">![Log In to FTP](/ftp-log-in.png)</Frame>
+
+### SFTP
+
+Sometimes you need a secure connection to your files. While this may be slower, SFTP does provide more security compared to FTP. Use the following to connect to SFTP instead.
+
+Type: SFTP\
+Port: `22`
+
+<Frame caption="Log In to SFTP">![Log In to SFTP](/ftp-log-in-sftp.png)</Frame>
+
+## Modify FTP Account
+
+Although you cannot change your FTP username, you can change the account's password and access control. To do so, go to the "FTP Management" tab and click on the FTP account you would like to modify. Make your modifications and hit "Modify" to save your changes.
+
+<Frame caption="Modify FTP Account">![Modify FTP Account](/directadmin-modify-ftp.png)</Frame>
+
+## Delete FTP Account
+
+If you ever need to delete an FTP account, go to the "FTP Management" tab and select the account(s) you would like to delete. Then click the "Delete" button at the top right-hand side of the page.
+
+<Frame caption="Delete FTP Account">![Delete FTP Account](/directadmin-delete-ftp.png)</Frame>
