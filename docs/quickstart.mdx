@@ -4,76 +4,73 @@ By the end of this guide, you'll have:
 
 * 1 [DangoID](/docs/dangoid/get-started) Account
 * 1 Dango Portal Account
-* 1 [Free Domain](/docs/domains/free)
+* 1 [Free Subdomain](/docs/domains/subdomains)
 * 1 [DirectAdmin](/docs/web-hosting/directadmin) Account
 * 1 Website w/ SSL
 * 1 Custom Domain Email Address
 
 ## DangoID
 
-DangoID is the authentication system powering all Dango products. With a username and password, you'll have access to everything in this guide, and more.
+DangoID is the authentication system powering all Dango products. With a username and password, you'll have access to everything in this guide and more.
 
 ### Requirements
 
-To start, you'll need
-
-* a username and password in mind
-* your email address
+To start, you'll need a username and password in mind, as well as your email address.
 
 ### Registration
 
-<Warning>You must be 13+ to sign up for a DangoID account.</Warning>
+<Warning>You must be 13+ to sign up for an independent DangoID account.</Warning>
 
-Head over to [my.dangoweb.com](https://my.dangoweb.com/) and click "Signup Instead" below the login form. Proceed to enter a unique username, your email, your first and last name, and your password. Discord User ID is optional, however, recommended if you have a Discord account. If you choose to add an ID, format it as Snowflake (`1234567890`). Finally, solve the hCaptcha and click "Signup" to finish the process. You should then see a success message, and you may now log in with your chosen username and password.
+Head over to [my.dangoweb.com](https://my.dangoweb.com/) and click "Register" above the login form. Proceed to enter your first and last name, a unique username, your email, and a password for your account. Finally, solve the hCaptcha and click "Register" to finish the process. You should then see a success message, and you may now log in with your chosen username and password.
 
-Alternatively, you may sign up with an external provider by clicking the button shown. Your username, email, name, and Discord ID are automatically collected and will be used to created your account.
+Alternatively, you may sign up with an external login provider by clicking their corresponding button at the bottom of the page. Your username, email, name, and similar informational details are automatically collected and will be used to create your account.
 
 #### Errors
 
-If you encounter any errors during sign-up, first check that your username is all lowercase, containing only letters and numbers. Then, check that your email is correct and that your password contains all legal characters. If you chose to enter a Discord User ID, make sure it's a Snowflake. If there are still errors after checking these, check our [Status Page](https://status.dangoweb.com/) for system downtime, and then contact support as a last resort. We'll fix the issue as soon as possible.
+If you encounter any errors during the registration process, first check that your username is all lowercase, containing only letters and numbers and no symbols. Then, check that your email is correct and that your password contains all legal characters. If there are still errors after checking these, check our [Status Page](https://status.dangoweb.com/) for system downtime, and then contact support as a last resort. We'll fix the issue as soon as possible.
 
 ### Logging in
 
-Enter your chosen username and password from the previous step, and wait. Depending on our uptime and your region, the connection may take longer than usual. Once logged in, you'll be greeted with your avatar, and an alert asking you to continue the creation process by creating a Dango Portal account. This is essential for ordering any products from us. Once you log in to the Dango Portal for the first time, your sign-up process is complete. Return to MyDangoID, and you should see your setup progress with Dango Portal checked off. You have now successfully created and logged into your DangoID Account.
+Enter your chosen username and password from the previous step and click "Sign in" to be logged in. You have now successfully created and logged into your DangoID Account.
 
-If you chose to sign up with an external provider, simply log in with that provider by clicking the same button.
+If you chose to sign up with an external login provider, simply log in with that provider by clicking the same button as before.
 
 #### Errors
 
-If you encounter issues on MyDangoID, first check the error message for any leads. Next, check that your username and password are valid. If everything looks good, there may be an error on our end and you should contact support. Getting error 500: `INTERNAL_SERVER_ERROR` may mean there's an error behind the scenes. First, check our [Status Page](https://status.dangoweb.com/) for downtime, then contact support to get an immediate explanation. If you can't log in to the Dango Portal, contact support.
+If you encounter issues on MyDangoID, first check the error message for any leads. Next, check that your username and password are valid. If everything looks good, there may be an error on our end and you should contact support. Getting error 500: `INTERNAL_SERVER_ERROR` may mean there's an error behind the scenes. First, check our [Status Page](https://status.dangoweb.com/) for downtime, then contact support to get an immediate explanation.
 
 ## Dango Portal
 
-Your Dango Portal account should be already set up from the last step. At the top right of your screen, you'll see your "Dangos", our currency. 100 Dangos equals exactly USD $1.00, and you can trade and redeem them. Dangos also can be won from our giveaways, events, or claimed on holidays using a coupon. 
+Your Dango Portal account should be already set up from the last step. At the top right of your screen, you'll see your "Dangos", our currency. 100 Dangos equals exactly USD $1.00, and you can trade and redeem them. Dangos also can be won from our giveaways, events, or claimed on holidays using a coupon.
 
 ### Ordering
 
-<Warning>Free domains are currently unavailable. To continue, you must use a domain you already own.</Warning>
+<Warning>Free domains are currently unavailable. To continue, we'll use a free subdomain.</Warning>
 
-Navigate to the homepage of the Dango Portal. Select "Basic Web Hosting", which is completely free. Free Hosting does not require renewal, and expires when you leave the Discord server, if you've linked an ID. Enter a free domain with whatever name and free TLD you choose. Most likely it'll be available, but if it's taken support will contact you. You can learn about all domain types [here](/docs/domains/about). If you already have a domain, type it in the field for an existing domain instead and do not fill in the new domain field. Add the product to the cart, and continue to checkout. At the checkout, place your order with Dangos. We'll use your DangoID username, password, and email for the Control Panel login. Account creation is not automatic yet, as we have to register your domain first. Look out for an email from "portal@dangoweb.com", that will contain all your login information. Don't worry about domain connection information, we've taken care of that because you chose to register a free domain with us.
+Navigate to the homepage of the Dango Portal at [portal.dangoweb.com](https://portal.dangoweb.com/). If you were logged into MyDangoID, you should be automatically logged into the Dango Portal. Go to our homepage at [dangoweb.com](https://dangoweb.com/), go to the "Web Hosting" section, and select "Basic Web Hosting" which is completely free. Free Hosting does not require renewal, but expires when you leave the Discord server if applicable. Click "Checkout with Dangos", which will redirect you back to the Dango Portal. Go to your newly created order, and activate it. For domain, you may enter an existing paid domain you own or enter your username followed by a [free subdomain](/docs/domains/subdomains). You can learn about all domain types [here](/docs/domains/about). If the desired subdomain or domain is taken, you will see an error message. Once activated, look out for an email from `portal@dangoweb.com` or a similar system address that will contain all your login information. If you chose to connect an existing paid domain, follow our [Domains](/help/web-hosting/directadmin/domains) Help Center guide for details on how to link your domain to our hosting.
 
 ## DirectAdmin
 
 ### Logging in
 
-To log in to the [DirectAdmin Control Panel](/docs/web-hosting/directadmin), you'll need your username and password. This should be your DangoID username and a random password unless your welcome email says otherwise. Once logged in, you should be presented with a page with all your features on the left, and your account limits on the right. You can always contact support to negotiate increased limits if they are needed.
+To log in to the [DirectAdmin Control Panel](/docs/web-hosting/directadmin), you'll need your username and password. This should be your DangoID username and the random password sent to your email address, unless your welcome email says otherwise. Once logged in, you should be presented with a page with all your features on the left, and your account limits on the right. You can always contact support to negotiate increased limits if they are needed.
 
 ### SSL
 
 Once in the panel, navigate to the "SSL Certificates" feature, and select "Get automatic certificate from ACME Provider". Fill in the form with these details:
 
 - ACME Provider: `Let's Encrypt`
-- Common Name: `domain.tld` (your domain)
+- Common Name: `domain.tld` (your domain or subdomain)
 - Wildcard: `No`
 - Key Size (bits): `EC-384`
 - Certificate Type: `SHA256`
 - Certificate Entries: `domain.tld`, `www.domain.tld`
 
-Once submitted, wait for an message containing SSL Certificate generation confirmation. Then, reload the page and toggle on "Force SSL with https redirect", and save. Our SSL Certificates auto-renew, so there's no need to stress about remembering to renew it. Finally, visit your domain and verify it shows a secure lock icon on the top left of your browser, and no warnings show up. Certificates may take up to 24 hours to work, so you may have to wait for it to register and reach your browser.
+Once submitted, wait for an message containing SSL Certificate generation confirmation. Then, reload the page and toggle on "Force SSL with https redirect", and save. Our SSL Certificates auto-renew, so there's no need to stress about remembering to renew it. Finally, visit your domain and verify it shows a secure lock icon on the top left of your browser, and no warnings show up. Certificates may take up to 24 hours to issue and propagate, so you may have to wait for it to register and reach your browser.
 
 ### Creating a website
 
-Exit out of "SSL Certificates", and open "File Explorer". Open the "public_html" folder on the left. Your website files should appear in front of you. Open up "index.html", and replace all content with this:
+Exit out of "SSL Certificates", and open "File Explorer". Open the `public_html` folder on the left. Your website files should appear in front of you. Open up `index.html`, and replace all content with this:
 
 ```html index.html
 <!doctype html>
@@ -198,11 +195,11 @@ Exit out of "SSL Certificates", and open "File Explorer". Open the "public_html"
 </html>
 ```
 
-Click save, and you now have an example Bootstrap website from [Bootstrap](https://getbootstrap.com)! If you already have a website, you can delete all files in the `public_html` folder and upload your website to the "public_html" folder. Once you've done that, reload your domain and you should see your website!
+Click save, and you now have an example Bootstrap website from [Bootstrap](https://getbootstrap.com). If you already have a website made, you can delete all files in the `public_html` folder and upload your website files to the `public_html` folder. Once you have done that, reload your domain and you should see your website updated.
 
 ### Creating a email address
 
-Close the "File Manager" tab, and open "E-mail Accounts". You should see one email address already there. It should look like `<username>@<domain.tld>`. On the free plan this is the only email account you can create, but you can contact support if you need more. All the way to the right, click the login icon and you'll be redirected to Roundcube, our online email client. If you choose to use another, like Apple Mail, Outlook, etc., contact support to get your connection details.
+Close the "File Manager" tab and open "E-mail Accounts". You should see one email address already there. It should look like `<username>@<domain.tld>`. On the free plan this is the only email account you can create, but you can contact support if you need more. On the right, click the log in icon and you'll be redirected to [Roundcube](https://portal.dangoweb.com/roundcube), our online email client. If you choose to use another, like Apple Mail, Outlook, etc., contact support to get your connection details.
 
 ## Finish
 
@@ -213,4 +210,4 @@ You've reached the end of the quick setup guide! You should now know how to:
 * Log in to and navigate [DirectAdmin](/docs/web-hosting/directadmin)
 * Import and edit a website
 
-If you would like to know more about specific topics, feel free to contact support! We're always happy to help!
+If you would like to know more about specific topics, feel free to contact support - we're always happy to help!
