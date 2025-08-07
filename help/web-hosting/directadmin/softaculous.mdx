@@ -1,74 +1,76 @@
-## Link Domain
+## Scripts
 
-<Info>If you registered your domain with us, this has already been done for you.</Info>
+Softaculous is a popular auto-installer that allows you to install various software applications on your DirectAdmin server with just a few clicks. It simplifies the process of installing and managing applications like WordPress, Joomla, Drupal, and many others.
 
-To serve web content to your domain it is required to link it using Nameservers or CNAME/A records.
+To access Softaculous, follow these steps:
 
-### Log In to Registrar
+1. Log in to your DirectAdmin control panel.
+2. Navigate to the **Extra Features** section.
+3. Click on <Icon icon="/icons/directadmin/softaculous.svg" /> **Softaculous Apps Installer**.
+4. You will be redirected to the Softaculous interface, where you can browse and search for applications.
 
-Access your domain registrar account by logging in to the panel that you used to purchase your domain.
+<Columns cols={2}>
+    <Frame caption="Find Softaculous">
+        ![Find Softaculous](/images/softaculous/find-softaculous.png)
+    </Frame>
+    <Frame caption="Softaculous">
+        ![Softaculous](/images/softaculous/softaculous.png)
+    </Frame>
+</Columns>
 
-### Nameservers
+## Installing Applications
 
-Within the registrar panel, select the desired domain and navigate to the tab that mentions changing nameservers.
+Once you are in the Softaculous interface, you can install applications by following these steps:
 
-For specific instructions for popular registrars, see instead below:
+1. Browse or search for the application you want to install.
+2. Click on the application to view its details.
+3. Click the **Install** button.
+4. Fill in the required information, such as the installation URL, admin username, and password.
+    - Installation URL: Your domain or subdomain where the application will be installed at e.g. `domain.com` or `sub.domain.com`.
+    - Directory: Trailing directory where the application will be installed at. You may want to leave this blank to install the application at the root of the domain (e.g. `domain.com` instead of `domain.com/wp`).
+    - Version: Select the highest version available. This should be automatically selected for you.
+    - Admin Username: The username you will use to log in to the application. Default: `admin`.
+    - Admin Password: The password you will use to log in to the application. Default: `admin`.
+    - Admin Email: The email address associated with the admin account.
+5. Deselect any offered plugins or themes that you do not want to install. This is important to avoid unnecessary bloat and potential security issues.
+6. Click the **Install** button to complete the installation. You may want to add an email address to the **Email Installation Details** field to receive an email with the installation details.
 
-- [GoDaddy](https://www.godaddy.com/help/edit-my-domain-nameservers-664)
-- [Namecheap](https://www.namecheap.com/support/knowledgebase/article.aspx/767/10/how-to-change-dns-for-a-domain/)
-- [IONOS](https://www.ionos.com/help/domains/using-your-own-name-servers/using-your-own-name-servers-for-a-domain/)
-- [Porkbun](https://kb.porkbun.com/article/22-how-to-change-nameservers)
+<Columns cols={2}>
+    <Frame caption="Find Application">
+        ![Find Application](/images/softaculous/find-application.png)
+    </Frame>
+    <Frame caption="Application Details">
+        ![Application Details](/images/softaculous/application-details.png)
+    </Frame>
+    <Frame caption="Deselect Offered Plugins">
+        ![Deselect Offered Plugins](/images/softaculous/deselect-offered-plugins.gif)
+    </Frame>
+    <Frame caption="Install Application">
+        ![Install Application](/images/softaculous/install-application.png)
+    </Frame>
+</Columns>
 
-#### Set Nameservers
 
-Find the nameservers that you would like to use to link your domain, this may be the customer nameservers sent in your welcome email or enterprise nameservers supplied to you.
+## Manage Installations
 
-#### Save Nameservers
+After installing an application, you can manage it through Softaculous. To do this, follow these steps:
 
-Save your nameservers. Changes may take up to 48 hours to fully propagate around the world. Usually, propagation completes within a few hours. You can try clearing your DNS cache or using an incognito/private tab to speed up this process. If you are alerted with an error when saving the nameservers, try using our backup nameservers. If that fails, use another method or contact support.
+1. Go to the **Installations** section in Softaculous. You will see a list of all installed applications.
+2. Next to each installation, you will find options to edit, remove, or view the application.
+3. Click on the <Icon icon="user" iconType="solid" /> **Admin** icon to access the application's admin panel.
+4. Click on the <Icon icon="rotate" iconType="solid" /> **Upgrade** icon to update the application to the latest version. This upgrade may break your installation, so it is recommended to take a backup before proceeding.
+5. Click on the <Icon icon="box-taped" iconType="solid" /> **Template** icon to create a template of the current installation. This will allow you to reinstall the application with the same settings in the future without having to reconfigure everything.
+6. Click on the <Icon icon="timeline" iconType="solid" /> **Staging** icon to create a staging environment for the installation. This is useful for testing changes before applying them to the live site.
+7. Click on the <Icon icon="files" iconType="solid" /> **Clone** icon to create a copy of the installation to another domain or subdomain.
+8. Click on the <Icon icon="file-zipper" iconType="solid" /> **Backup** icon to create a backup of the installation.
+4. Click on the <Icon icon="pencil" iconType="solid" /> **Edit** icon to change settings such as the installation URL, admin username, password, and more.
+5. Click on the <Icon icon="trash-can" iconType="solid" /> **Remove** icon to uninstall the application. This will delete all files and databases associated with the installation.
 
-### CNAME/A Records
-
-Within the registrar panel, select the desired domain and navigate to the tab that mentions changing records.
-
-#### Set CNAME/A Records
-
-Create a new CNAME or A record with the name `@`. If you choose to use CNAME to point (recommended in case we change IPs), set the value to `cname.dangoweb.com`. If you choose to use our IP, set the value to our server IP. This can be found by contacting support or pinging any of our websites. `@` only applies to the main domain, not subdomains. You will need to add a record for each subdomain, with the name as the subdomain. You may wish to use a wildcard, `*`, to point all subdomains in one record.
-
-#### Save CNAME/A Records
-
-Save your added records. If you are alerted with an error when saving the records, contact support. It may be possible that they were entered incorrectly.
-
-## Log In to DirectAdmin
-
-To add your domain, [log in](/help/web-hosting/directadmin/logging-in) to the [DirectAdmin](/web-hosting/directadmin) control panel and navigate to the "Domain Setup" tab.
-
-## Add Domain
-
-Once there, you should see your main domain in the list of domains. If the domain you would like to add is on the list, it is already linked. If it is not, click the "Add New" button to add it. Enter your new domain name and click "Create". Leave the other fields how they are.
-
-<Frame caption="Add Domain">![Add Domain](/directadmin-add-domain.png)</Frame>
-
-## Modify Domain
-
-Once you have your domain added to [DirectAdmin](/web-hosting/directadmin), you can modify it if needed. You can rename it if needed, however this is not advised as it may break your website and configurations you have. You may also want to toggle on "Force SSL with https redirect" if you have an [SSL](/help/web-hosting/directadmin/ssl) certificate.
-
-<Frame caption="Modify Domain">![Modify Domain](/directadmin-modify-domain.png)</Frame>
-
-## Delete Domain
-
-If you would like to remove your domain from DirectAdmin, select it from the domain list and click delete. It will ask if you would like to delete the domain's web files with it. Deleting a domain is a permanent action, it deletes all DNS configuration and files (if you chose). You may add the domain again, but this will not restore deleted configurations or web files.
-
-<Frame caption="Delete Domain">![Delete Domain](/directadmin-delete-domain.png)</Frame>
-
-## Subdomains
-
-Need to add a subdomain to your domain? Simply go to the "Subdomains" tab and add the subdomain to the domain you have linked. You can then use the subdomain by navigating to it in the File Manager or [FTP](/help/web-hosting/directadmin/ftp) tab. After subdomain creation you may change the Docroot if needed.
-
-<Frame caption="Add Subdomain">![Add Subdomain](/directadmin-add-subdomain.png)</Frame>
-
-## DNS
-
-[DirectAdmin](/web-hosting/directadmin) offers a DNS record manager similar to all other control panels and domain registrars. You may use it to configure the domain to add or remove DNS records. This only applies if you linked your domain using nameservers.
-
-<Frame caption="Add Record">![Add Record](/directadmin-add-record.png)</Frame>
+<Columns cols={2}>
+    <Frame caption="Find Installations">
+        ![Find Installations](/images/softaculous/find-installations.png)
+    </Frame>
+    <Frame caption="Installations">
+        ![Installations](/images/softaculous/installations.png)
+    </Frame>
+</Columns>

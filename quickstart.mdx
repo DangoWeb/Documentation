@@ -2,12 +2,12 @@
 
 By the end of this guide, you'll have:
 
-* 1 [DangoID](/dangoid/get-started) Account
-* 1 Dango Portal Account
-* 1 [Free Subdomain](/domains/subdomains)
-* 1 [DirectAdmin](/web-hosting/directadmin) Account
-* 1 Website w/ SSL
-* 1 Custom Domain Email Address
+- 1 [DangoID](/dangoid/get-started) Account
+- 1 Dango Portal Account
+- 1 [Free Subdomain](/domains/subdomains)
+- 1 [DirectAdmin](/web-hosting/directadmin) Account
+- 1 Website w/ SSL
+- 1 Custom Domain Email Address
 
 ## DangoID
 
@@ -19,7 +19,9 @@ To start, you'll need a username and password in mind, as well as your email add
 
 ### Registration
 
-<Warning>You must be 13+ to sign up for an independent DangoID account.</Warning>
+<Warning>
+  You must be 13\+ to sign up for an independent DangoID account.
+</Warning>
 
 Head over to [my.dangoweb.com](https://my.dangoweb.com/) and click "Register" above the login form. Proceed to enter your first and last name, a unique username, your email, and a password for your account. Finally, solve the hCaptcha and click "Register" to finish the process. You should then see a success message, and you may now log in with your chosen username and password.
 
@@ -41,11 +43,13 @@ If you encounter issues on MyDangoID, first check the error message for any lead
 
 ## Dango Portal
 
-Your Dango Portal account should be already set up from the last step. At the top right of your screen, you'll see your "Dangos", our currency. 100 Dangos equals exactly USD $1.00, and you can trade and redeem them. Dangos also can be won from our giveaways, events, or claimed on holidays using a coupon.
+Your Dango Portal account should be already set up from the last step. At the top right of your screen, you'll see your "Dangos", our currency. 100 Dangos equals exactly USD \$1.00, and you can trade and redeem them. Dangos also can be won from our giveaways, events, or claimed on holidays using a coupon.
 
 ### Ordering
 
-<Warning>Free domains are currently unavailable. To continue, we'll use a free subdomain.</Warning>
+<Warning>
+  Free domains are currently unavailable. To continue, we'll use a free subdomain.
+</Warning>
 
 Navigate to the homepage of the Dango Portal at [portal.dangoweb.com](https://portal.dangoweb.com/). If you were logged into MyDangoID, you should be automatically logged into the Dango Portal. Go to our homepage at [dangoweb.com](https://dangoweb.com/), go to the "Web Hosting" section, and select "Basic Web Hosting" which is completely free. Free Hosting does not require renewal, but expires when you leave the Discord server if applicable. Click "Checkout with Dangos", which will redirect you back to the Dango Portal. Go to your newly created order, and activate it. For domain, you may enter an existing paid domain you own or enter your username followed by a [free subdomain](/domains/subdomains). You can learn about all domain types [here](/domains/about). If the desired subdomain or domain is taken, you will see an error message. Once activated, look out for an email from `portal@dangoweb.com` or a similar system address that will contain all your login information. If you chose to connect an existing paid domain, follow our [Domains](/help/web-hosting/directadmin/domains) Help Center guide for details on how to link your domain to our hosting.
 
@@ -57,7 +61,7 @@ To log in to the [DirectAdmin Control Panel](/web-hosting/directadmin), you'll n
 
 ### SSL
 
-Once in the panel, navigate to the "SSL Certificates" feature, and select "Get automatic certificate from ACME Provider". Fill in the form with these details:
+Once in the panel, navigate to the <Icon icon="/icons/directadmin/ssl.svg" /> **SSL Certificates** feature, and select "Get automatic certificate from ACME Provider". Fill in the form with these details:
 
 - ACME Provider: `Let's Encrypt`
 - Common Name: `domain.tld` (your domain or subdomain)
@@ -70,144 +74,26 @@ Once submitted, wait for an message containing SSL Certificate generation confir
 
 ### Creating a website
 
-Exit out of "SSL Certificates", and open "File Explorer". Open the `public_html` folder on the left. Your website files should appear in front of you. Open up `index.html`, and replace all content with this:
+Exit out of <Icon icon="/icons/directadmin/ssl.svg" /> **SSL Certificates**. Choose an option from the below list to get started with a website. If you do not have a website, click the "HTML" option to use a template.
 
-```html index.html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.108.0">
-    <title>Starter Template · Bootstrap v5.3</title>
-    <link rel="icon" href="https://getbootstrap.com/5.3/assets/img/favicons/favicon.ico">
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+- [<Icon icon="html5" /> **HTML**: Use a simple HTML template to get started with a basic website.](/website-creation/code/html)
+- [<Icon icon="php" /> **PHP**: Upload your PHP website and install required dependencies.](/website-creation/code/php)
+- [<Icon icon="wordpress" /> **WordPress**: Use our one-click installer to set up a WordPress website.](/website-creation/cms/wordpress)
+- [<Icon icon="node-js" /> **Node.js**: Upload your Node.js website, install required dependencies, and learn how to start your app.](/website-creation/code/nodejs)
+- [<Icon icon="python" /> **Python**: Upload your Python website, install required dependencies, and learn how to start your app.](/website-creation/code/python)
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-    <link href="https://getbootstrap.com/5.3/examples/starter-template/starter-template.css" rel="stylesheet">
-  </head>
-  <body>
-    <div class="col-lg-8 mx-auto p-4 py-md-5">
-    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>
-            <span class="fs-4">Starter template</span>
-        </a>
-    </header>
-    <main>
-        <h1>Get started with Bootstrap</h1>
-        <p class="fs-5 col-md-8">Quickly and easily get started with Bootstrap's compiled, production-ready files with this barebones example featuring some basic HTML and helpful links. Download all our examples to get started.</p>
-        <div class="mb-5">
-            <a href="https://getbootstrap.com/5.3/examples/" class="btn btn-primary btn-lg px-4">Download examples</a>
-        </div>
-        <hr class="col-3 col-md-2 mb-5">
-            <div class="row g-5">
-                <div class="col-md-6">
-                    <h2>Starter projects</h2>
-                    <p>Ready to beyond the starter template? Check out these open source projects that you can quickly duplicate to a new GitHub repository.</p>
-                    <ul class="icon-list ps-0">
-                        <li class="d-flex align-items-start mb-1">
-                        <a href="https://github.com/twbs/bootstrap-npm-starter" rel="noopener" target="_blank">Bootstrap npm starter</a>
-                        </li>
-                        <li class="text-muted d-flex align-items-start mb-1">Bootstrap Parcel starter (coming soon!)</li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <h2>Guides</h2>
-                    <p>Read more detailed instructions and documentation on using or contributing to Bootstrap.</p>
-                    <ul class="icon-list ps-0">
-                        <li class="d-flex align-items-start mb-1">
-                            <a href="https://getbootstrap.com/5.3/getting-started/introduction/">Bootstrap quick start guide</a>
-                        </li>
-                        <li class="d-flex align-items-start mb-1">
-                            <a href="https://getbootstrap.com/5.3/getting-started/webpack/">Bootstrap Webpack guide</a>
-                        </li>
-                        <li class="d-flex align-items-start mb-1">
-                            <a href="https://getbootstrap.com/5.3/getting-started/parcel/">Bootstrap Parcel guide</a>
-                        </li>
-                        <li class="d-flex align-items-start mb-1">
-                            <a href="https://getbootstrap.com/5.3/getting-started/vite/">Bootstrap Vite guide</a>
-                        </li>
-                        <li class="d-flex align-items-start mb-1">
-                            <a href="https://getbootstrap.com/5.3/getting-started/contribute/">Contributing to Bootstrap</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </main>
-        <footer class="pt-5 my-5 text-muted border-top">
-            Created by the Bootstrap team &middot; &copy; 2022
-        </footer>
-        </div>
-        <script src="https://getbootstrap.com/5.3/dist/js/bootstrap.bundle.min.js"></script>      
-    </body>
-</html>
-```
-
-Click save, and you now have an example Bootstrap website from [Bootstrap](https://getbootstrap.com). If you already have a website made, you can delete all files in the `public_html` folder and upload your website files to the `public_html` folder. Once you have done that, reload your domain and you should see your website updated.
 
 ### Creating a email address
 
-Close the "File Manager" tab and open "E-mail Accounts". You should see one email address already there. It should look like `<username>@<domain.tld>`. On the free plan this is the only email account you can create, but you can contact support if you need more. On the right, click the log in icon and you'll be redirected to [Roundcube](https://portal.dangoweb.com/roundcube), our online email client. If you choose to use another, like Apple Mail, Outlook, etc., contact support to get your connection details.
+Open <Icon icon="/icons/directadmin/email.svg" /> **E-mail Accounts**. You should see one email address already there. It should look like `<username>@<domain.tld>`. On the free plan this is the only email account you can create, but you can contact support if you need more. On the right, click the log in icon and you'll be redirected to [<Icon icon="/icons/directadmin/roundcube.svg" /> Roundcube](https://portal.dangoweb.com/roundcube), our online email client. If you choose to use another, like Apple Mail, Outlook, etc., contact support to get your connection details.
 
 ## Finish
 
-You've reached the end of the quick setup guide! You should now know how to:
+You've reached the end of the quick setup guide\! You should now know how to:
 
-* Log in to [DangoID](/dangoid/get-started)
-* Log in to Dango Portal and place an order
-* Log in to and navigate [DirectAdmin](/web-hosting/directadmin)
-* Import and edit a website
+- Log in to [DangoID](/dangoid/get-started)
+- Log in to Dango Portal and place an order
+- Log in to and navigate [DirectAdmin](/web-hosting/directadmin)
+- Import and edit a website
 
-If you would like to know more about specific topics, feel free to contact support - we're always happy to help!
+If you would like to know more about specific topics, feel free to contact support - we're always happy to help\!
