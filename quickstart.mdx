@@ -47,9 +47,8 @@ Your Dango Portal account should be already set up from the last step. At the to
 
 ### Ordering
 
-<Warning>
-  Free domains are currently unavailable. To continue, we'll use a free subdomain.
-</Warning>
+<Warning>Free domains are currently unavailable. To continue, we'll use a free subdomain.</Warning>
+<Info>If you have a [paid domain](/domains/paid) that you would like to use, use that instead.</Info>
 
 Navigate to the homepage of the Dango Portal at [portal.dangoweb.com](https://portal.dangoweb.com/). If you were logged into MyDangoID, you should be automatically logged into the Dango Portal. Go to our homepage at [dangoweb.com](https://dangoweb.com/), go to the "Web Hosting" section, and select "Basic Web Hosting" which is completely free. Free Hosting does not require renewal, but expires when you leave the Discord server if applicable. Click "Checkout with Dangos", which will redirect you back to the Dango Portal. Go to your newly created order, and activate it. For domain, you may enter an existing paid domain you own or enter your username followed by a [free subdomain](/domains/subdomains). You can learn about all domain types [here](/domains/about). If the desired subdomain or domain is taken, you will see an error message. Once activated, look out for an email from `portal@dangoweb.com` or a similar system address that will contain all your login information. If you chose to connect an existing paid domain, follow our [Domains](/help/web-hosting/directadmin/domains) Help Center guide for details on how to link your domain to our hosting.
 
@@ -74,14 +73,30 @@ Once submitted, wait for an message containing SSL Certificate generation confir
 
 ### Creating a website
 
-Exit out of <Icon icon="/icons/directadmin/ssl.svg" /> **SSL Certificates**. Choose an option from the below list to get started with a website. If you do not have a website, click the "HTML" option to use a template.
+<Info>Skip this step for Email Hosting accounts.</Info>
 
-- [<Icon icon="html5" /> **HTML**: Use a simple HTML template to get started with a basic website.](/website-creation/code/html)
-- [<Icon icon="php" /> **PHP**: Upload your PHP website and install required dependencies.](/website-creation/code/php)
-- [<Icon icon="wordpress" /> **WordPress**: Use our one-click installer to set up a WordPress website.](/website-creation/cms/wordpress)
-- [<Icon icon="node-js" /> **Node.js**: Upload your Node.js website, install required dependencies, and learn how to start your app.](/website-creation/code/nodejs)
-- [<Icon icon="python" /> **Python**: Upload your Python website, install required dependencies, and learn how to start your app.](/website-creation/code/python)
+Exit out of <Icon icon="/icons/directadmin/ssl.svg" /> **SSL Certificates**. Choose an option from the below list to get started with a website. If you do not have a website as of yet, click the "HTML" option to use a template. If you prefer to use Web Hosting without setting up a website, you can skip this step.
 
+<Columns cols="2">
+  <Card title="HTML" icon="html5" href="/website-creation/code/html" horizontal>
+    Start with a simple HTML template or upload an existing site.
+  </Card>
+  <Card title="PHP" icon="php" href="/website-creation/code/php" horizontal>
+    Upload your PHP website and install required dependencies.
+  </Card>
+  <Card title="WordPress" icon="wordpress" href="/website-creation/code/wordpress" horizontal>
+    Use our one-click installer to set up a WordPress website.
+  </Card>
+  <Card title="Website Builder" icon="truck-fast" href="/website-creation/website-builders" horizontal>
+    Set up a website using drag-and-drop website builders.
+  </Card>
+  <Card title="Node.js" icon="node-js" href="/website-creation/code/nodejs" horizontal>
+    Upload your Node.js website, install required dependencies, and learn how to start your app.
+  </Card>
+  <Card title="Python" icon="python" href="/website-creation/code/python" horizontal>
+    Upload your Python website, install required dependencies, and learn how to start your app.
+  </Card>
+</Columns>
 
 ### Creating a email address
 
