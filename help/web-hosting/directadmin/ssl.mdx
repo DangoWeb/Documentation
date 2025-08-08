@@ -1,0 +1,159 @@
+SSL (Secure Sockets Layer) is a protocol that provides a secure channel between two devices operating over the internet or an internal network. It is widely used to secure communications between web browsers and servers, ensuring that data transmitted remains private and integral.
+
+To access <Icon icon="/icons/directadmin/ssl.svg" /> **SSL Certificates**, follow these steps:
+
+1. Log in to your <Icon icon="/icons/directadmin/directadmin.svg" /> **DirectAdmin** control panel.
+2. Navigate to the **Account Manager** section.
+3. Click on <Icon icon="/icons/directadmin/ssl.svg" /> **SSL Certificates**.
+
+<Frame caption="Find SSL Certificates">
+    ![Find SSL Certificates](/images/ssl/find-ssl-certificates.png)
+</Frame>
+
+## ACME Provider (Recommended)
+
+This method is recommended as it allows you to obtain a free SSL certificate from Let's Encrypt, ZeroSSL, or other free trusted SSL generation provider, which is automatically renewed every 90 days.
+
+1. Select "Get automatic certificate from ACME Provider". Fill in the form with the following details.
+2. ACME Provider: `Let's Encrypt`
+3. Common Name: `domain.tld` (your domain or subdomain), wildcard: `No`
+4. Key Size (bits): `EC-384`
+5. Certificate Type: `SHA256`
+6. Certificate Entries: `domain.tld`, `www.domain.tld`
+7. Click on the **Save** button to save your certificate and preferences.
+
+Once submitted, wait for an message containing "SSL Certificate generation confirmation". Then, reload the page and toggle on "Force SSL with https redirect", and save. Our SSL certificates auto-renew, no need to remember to renew it every few months.
+
+Finally, visit your domain and verify it shows a secure lock icon on the top left of your browser, and no warnings show up. Certificates may take up to 24 hours to issue and propagate, so you may have to wait for it to register and reach your router and browser.
+
+<Info>If your SSL certificate does not propagate within 24 hours, verify that your domain is linked properly and [contact support](/help/support).</Info>
+
+<Frame caption="Use ACME Provider">
+    ![Use ACME Provider](/images/ssl/acme.png)
+</Frame>
+
+## Wildcard Certificates
+
+A wildcard SSL certificate allows you to secure your main domain and all its subdomains (e.g., `*.domain.tld`).
+
+### Local ACME Provider
+
+<Warning>Your domain needs to be configured to use our [nameservers](/help/web-hosting/directadmin/domains#nameservers) to use wildcard automatic SSL certificate generation and renewals.</Warning>
+
+This method allows you to obtain a free wildcard SSL certificate from Let's Encrypt, ZeroSSL, or other free trusted SSL generation provider, which is automatically renewed every 90 days.
+
+1. Select "Get automatic certificate from ACME Provider". Fill in the form with the following details.
+2. ACME Provider: `Let's Encrypt`
+3. Common Name: `domain.tld` (your domain or subdomain)
+4. Wildcard: `Yes`
+5. Key Size (bits): `EC-384`
+6. Certificate Type: `SHA256`
+7. DNS Provider: `Local`
+8. Certificate Entries: `domain.tld`, `*.domain.tld`
+9. Click on the **Save** button to save your certificate and preferences.
+
+Once submitted, wait for success message from the system. Then, reload the page and toggle on "Force SSL with https redirect", and save. Our SSL certificates auto-renew, no need to remember to renew it every few months.
+
+Finally, visit your domain and verify it shows a secure lock icon on the top left of your browser, and no warnings show up. Certificates may take up to 24 hours to issue and propagate, so you may have to wait for it to register and reach your router and browser.
+
+<Info>If your SSL certificate does not propagate within 24 hours, verify that your domain is linked properly and [contact support](/help/support).</Info>
+
+<Frame caption="Use Local ACME Provider (Wildcard)">
+    ![Use Local ACME Provider (Wildcard)](/images/ssl/wildcard.png)
+</Frame>
+
+### Cloudflare
+
+<Info>Your SSL certificate may not renew automatically if there are issues with DNS connection during renewal.</Info>
+
+This method allows you to choose to use a different DNS provider for your wildcard SSL certificate, such as Cloudflare, Google Domains, or any other supported DNS provider that supports the ACME protocol.
+
+1. Select "Get automatic certificate from ACME Provider". Fill in the form with the following details.
+2. ACME Provider: `Let's Encrypt`
+3. Common Name: `domain.tld` (your domain or subdomain)
+4. Wildcard: `Yes`
+5. Key Size (bits): `EC-384`
+6. Certificate Type: `SHA256`
+7. DNS Provider: `Cloudflare`
+8. Click on the **Customize** button and fill the following details.
+    - Account email: None
+    - API key: Your Cloudflare DNS API Token
+        1. Log into your Cloudflare account
+        2. Click your profile on the top right
+        3. Click on **API Tokens**
+        4. Create a new API token following the template "Edit zone DNS"
+        5. Set permissions to `Zone : DNS : Edit` and `Zone : Read`
+        6. Set the zone resources to `Include : Specific Zone : domain.tld` (your domain)
+        7. Optionally restrict the token to the server IP address `38.46.219.156`
+    - API token with `DNS : Edit` permission (since v3.1.0): None
+    - API token with `Zone : Read` permission (since v3.1.0): None
+    - Alias to `CF_API_KEY`: None
+    - Alias to `CF_DNS_API_TOKEN`: None
+    - Alias to `CF_API_EMAIL`: None
+    - Alias to `CF_ZONE_API_TOKEN`: None
+9. Certificate Entries: `domain.tld`, `*.domain.tld`
+10. Click on the **Save** button to save your certificate and preferences.
+
+Finally, visit your domain and verify it shows a secure lock icon on the top left of your browser, and no warnings show up. Certificates may take up to 24 hours to propagate, so you may have to wait for it to register and reach your router and browser.
+
+<Info>If your SSL certificate does not propagate within 24 hours, verify that your domain is linked properly and [contact support](/help/support).</Info>
+
+<Columns cols="2">
+    <Frame caption="Use Cloudflare (Wildcard)">
+        ![Use Other DNS Provider (Wildcard)](/images/ssl/dns.png)
+    </Frame>
+    <Frame caption="Customize Cloudflare (Wildcard)">
+        ![Customize Cloudflare (Wildcard)](/images/ssl/cloudflare.png)
+    </Frame>
+</Columns>
+
+### Other DNS Provider
+
+<Info>Your SSL certificate may not renew automatically if there are issues with DNS connection during renewal.</Info>
+
+This method allows you to choose to use a different DNS provider for your wildcard SSL certificate, such as Cloudflare, Google Domains, or any other supported DNS provider that supports the ACME protocol.
+
+1. Select "Get automatic certificate from ACME Provider". Fill in the form with the following details.
+2. ACME Provider: `Let's Encrypt`
+3. Common Name: `domain.tld` (your domain or subdomain)
+4. Wildcard: `Yes`
+5. Key Size (bits): `EC-384`
+6. Certificate Type: `SHA256`
+7. DNS Provider: Your DNS Provider
+8. Click on the **Customize** button to authorize the host and set custom configurations.
+9. Certificate Entries: `domain.tld`, `*.domain.tld`
+10. Click on the **Save** button to save your certificate and preferences.
+
+Finally, visit your domain and verify it shows a secure lock icon on the top left of your browser, and no warnings show up. Certificates may take up to 24 hours to propagate, so you may have to wait for it to register and reach your router and browser.
+
+<Info>If your SSL certificate does not propagate within 24 hours, verify that your domain is linked properly and [contact support](/help/support).</Info>
+
+<Columns cols="2">
+    <Frame caption="Use Other DNS Provider (Wildcard)">
+        ![Use Other DNS Provider (Wildcard)](/images/ssl/dns.png)
+    </Frame>
+    <Frame caption="Customize Other DNS Provider (Wildcard)">
+        ![Customize Other DNS Provider (Wildcard)](/images/ssl/cloudflare.png)
+    </Frame>
+</Columns>
+
+## Paste Pre-Generated
+
+<Warning>To use another SSL provider, you must purchase your SSL certificate through them.</Warning>
+
+<Info>Your SSL certificate may not renew automatically. Check your plan with your SSL certificate provider for more details.</Info>
+
+If you have purchased an SSL certificate from a third-party provider, you can manually paste the certificate and private key into <Icon icon="/icons/directadmin/directadmin.svg" /> **DirectAdmin** to configure the domain to use the custom certificate.
+
+1. Select "Paste a pre-generated certificate and key".
+2. Paste your full certificate private key block into the "Key" field.
+3. Paste your full certificate block into the "Certificate" field.
+4. Click on the **Save** button to save your certificate and preferences.
+
+Visit your domain and verify it shows a secure lock icon on the top left of your browser, and no warnings show up. Certificates may take up to 24 hours to issue and propagate, so you may have to wait for it to register and reach your router and browser.
+
+<Info>If your SSL certificate does not propagate within 24 hours, verify that your domain is linked properly and [contact support](/help/support).</Info>
+
+<Frame caption="Use Pre-Generated">
+    ![Use Pre-Generated](/images/ssl/manual.png)
+</Frame>
