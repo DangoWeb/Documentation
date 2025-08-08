@@ -56,20 +56,13 @@ Navigate to the homepage of the Dango Portal at [portal.dangoweb.com](https://po
 
 ### Logging in
 
-To log in to the [<Icon icon="/icons/directadmin/directadmin.svg" /> DirectAdmin](/web-hosting/directadmin) Control Panel, you'll need your username and password. This should be your DangoID username and the random password sent to your email address, unless your welcome email says otherwise. Once logged in, you should be presented with a page with all your features on the left, and your account limits on the right. You can always contact support to negotiate increased limits if they are needed.
+To log in to the [<Icon icon="/icons/directadmin/directadmin.svg" /> DirectAdmin](/web-hosting/directadmin) control panel, you'll need your username and password. This should be your DangoID username and the random password sent to your email address, unless your welcome email says otherwise. Once logged in, you should be presented with a page with all your features on the left, and your account limits on the right. You can always contact support to negotiate increased limits if they are needed.
 
 ### SSL
 
-Once in the panel, navigate to the <Icon icon="/icons/directadmin/ssl.svg" /> **SSL Certificates** feature, and select "Get automatic certificate from ACME Provider". Fill in the form with these details:
+Activate SSL security for your website traffic using the <Icon icon="/icons/directadmin/ssl.svg" /> **SSL Certificates** feature:
 
-- ACME Provider: `Let's Encrypt`
-- Common Name: `domain.tld` (your domain or subdomain)
-- Wildcard: `No`
-- Key Size (bits): `EC-384`
-- Certificate Type: `SHA256`
-- Certificate Entries: `domain.tld`, `www.domain.tld`
-
-Once submitted, wait for an message containing SSL Certificate generation confirmation. Then, reload the page and toggle on "Force SSL with https redirect", and save. Our SSL Certificates auto-renew, so there's no need to stress about remembering to renew it. Finally, visit your domain and verify it shows a secure lock icon on the top left of your browser, and no warnings show up. Certificates may take up to 24 hours to issue and propagate, so you may have to wait for it to register and reach your browser.
+<Card title="SSL Certificates" icon="/icons/directadmin/ssl.svg" color="#33ccff" href="/help/web-hosting/directadmin/ssl" horizontal />
 
 ### Creating a website
 
