@@ -1,0 +1,31 @@
+## Introduction
+
+<Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** is a powerful commission‑tracking and management tool designed for businesses, agencies, and freelancers. It lets you **plan**, **manage**, and **track** client commissions through a clean, intuitive interface. By handling the entire commission lifecycle, <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** frees you to focus on delivering value rather than juggling spreadsheets.
+
+## Features
+
+| Feature | Description |
+|---|---|
+| **Customizable Fields** | Define any number of custom fields (text, number, date, select, etc.) to capture the data that matters to your workflow. |
+| **Role‑Based Access** | Built‑in roles (`admin`, `dev`, `user`) with optional aliases and numeric access levels for fine‑grained permission control. |
+| **Status Management** | Pre‑defined commission statuses (`Completed`, `In Progress`, `On Hold`, `Cancelled`) with the ability to add more. |
+| **Task Lists** | Attach multiple tasks to each commission, track completion, and optionally send email notifications on updates. |
+| **Session‑Based Storage** | Works with `express-session` and any compatible session store (e.g., <Icon icon="/icons/directadmin/databases.svg" /> **MySQL**) to keep data per‑user without a separate database. |
+| **Sync & Hooks** | Custom `create`, `update`, and `sync` handlers let you integrate with external services or persist data wherever you need. |
+| **Theming & Branding** | Set tenant‑specific logos, banners, theme colors, and dark‑mode preferences to match your brand. |
+| **Internationalisation** | Override any UI text via the `customText` object for localisation or bespoke wording. |
+| **Responsive UI** | Designed to work on desktop and mobile browsers, with a modern layout that adapts to screen size. |
+
+## Use Cases
+
+| Scenario | How <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** Helps |
+|---|---|
+| **Freelance Designer** | Track client projects, set milestones, and invoice amounts while keeping a clear status view for each commission. |
+| **Agency Managing Multiple Developers** | Assign commissions to specific developers, monitor progress, and lock commissions once finalized to prevent accidental edits. |
+| **SaaS Platform Offering Commission‑Based Services** | Integrate <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** into your existing Express app, use session data to tie commissions to logged‑in users, and expose a self‑service portal. |
+| **Internal Sales Team** | Use role‑based access to let sales reps create commissions while managers (`admin`) review and approve them. |
+| **Custom Workflow Automation** | Leverage the `create`/`update`/`sync` handlers to push commission data to external CRMs, accounting software, or notification services. |
+
+## License & Contributions
+
+<Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** is released under the ISC License. Contributions are welcome via pull requests on the official [<Icon icon="github" /> **GitHub** repository](https://github.com/DangoWeb/CommTrackr). Please follow the contribution guidelines and include unit tests for any new functionality.

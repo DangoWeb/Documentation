@@ -1,0 +1,328 @@
+## Session Variables
+
+These variables must be set in your `req.session` object to enable <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** functionality. Alternatively, you can modify the variable names to match your custom session configuration using the `vars` configuration during initialization.
+
+<Tabs>
+  <Tab title="Summary">
+  | Variable | Purpose | Default Key | Example |
+  |---|---|---|---|
+  | **userId** | Unique identifier for the logged‑in user | `username` | `req.session.username = 'john123'` |
+  | **userName** | Display name (fallback to `userId`) | `name` | `req.session.name = 'John Doe'` |
+  | **role** | User role (`admin`, `dev`, `user`) | `role` | `req.session.role = 'admin'` |
+  | **roleAliases** | Map custom role names to standard ones | `{}` | `{ user: ['client'], admin: ['owner'] }` |
+  | **access** | Numeric access levels alternative to `role` | `{}` | `{ var: 'access', admin: [2] }` |
+  | **commissions** | Array of commission objects for the user | `commissions` | See [**Commission Object**](#commission-object ) |
+  | **users** | List of all system users (for assignment) | `users` | `[{ userId: 'dev1', role: 'dev' }, ...]` |
+  | **possibleStatuses** | Allowed status values | `[]` | `[{ label: 'Pending', value: 'Pending' }]` |
+  | **disableFieldEditing** | Field IDs that admins cannot edit | `[]` | `['amount', 'currency']` |
+  </Tab>
+  <Tab title="Expanded">
+    <ResponseField name="userId" type="String" default="username" required>
+      `userId` must contain a unique identifier for the user, such as a username or user ID. This is used to track user-specific data. This must be present for <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** to detect a logged-in user.
+
+      Fallback: None
+
+      Session Example: `'id'`
+    </ResponseField>
+
+    <ResponseField name="userName" type="String" default="name">
+      `userName` should contain the name of the user. This is used for display purposes in the <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** interface. Fallback to `userId` if not set.
+
+      Fallback: `userId`
+
+      Session Example: `'John Doe'`
+    </ResponseField>
+
+    <ResponseField name="role" type="String" default="role">
+      `role` should contain the role of the user: `'admin'`, `'dev'`, or `'user'`. This is used to control access to certain features and functionalities within CommTrackr.
+
+      Fallback: `'user'`
+
+      Session Example: `'user'`, `'dev'`, `'admin'`
+    </ResponseField>
+
+    <ResponseField name="roleAliases" type="Object" default="{}">
+      `role` can also be set to custom role names. Use `roleAliases` to map your custom role names to the standard roles used by CommTrackr.
+    </ResponseField>
+
+    <ResponseField name="access" type="Array" default="{}">
+      `access` can be used as an alternative to `role` for access control. It should contain numeric access levels. Use the `access` configuration to define which levels correspond to `'user'`, `'dev'`, and `'admin'`.
+    </ResponseField>
+
+    <ResponseField name="commissions" type="Array" default="commissions">
+      `commissions` should be an array of commission objects associated with the user. Each item in the array should follow the [**Commission Object**](#commission-object) structure.
+
+      Session Example:
+      
+      ```javascript
+      [
+        {
+          id: 'unique-commission-id', // Unique identifier for the commission
+          user: 'userId', // Commission creator's unique userId. Should match the userId variable, otherwise the commission will only be accessible in admin/dev views
+          amount: 1000, // Commission amount as a number, or null if not applicable. Defaults to null
+          currency: 'USD', // Currency code for the commission amount as a string. Defaults to 'USD'
+          date: '2023-10-01', // Date of the commission in any valid date/datetime format. Defaults to null
+          status: 'On Hold', // Status of the commission as a string (e.g., 'Completed', 'In Progress', 'On Hold', 'Cancelled')
+          fields: { // Custom fields associated with the commission
+            'id': 'value' // Key-value pairs for custom fields
+          },
+          tasks: [ // Array of tasks associated with the commission
+            {
+              done: false, // Task completion status. Defaults to false
+              content: '' // Task description. Defaults to ''
+            }
+          ],
+          locked: false, // Whether commission is locked from being edited by user. Defaults to false
+          links: [ // Array of links associated with the commission
+            {
+              label: 'Link Label', // Link label
+              url: 'http://example.com' // Link URL
+            }
+          ],
+          assignedTo: ['dev1UserId', 'dev2UserId'] // Array of userIds of the developers assigned to this commission
+        }
+      ]
+      ```
+    </ResponseField>
+
+    <ResponseField name="possibleStatuses" type="Array" default="[]">
+      `possibleStatuses` should be an array of possible commission status objects. Each status object should have a label and value property.
+    </ResponseField>
+
+    <ResponseField name="disableFieldEditing" type="Array" default="[]">
+      `disableFieldEditing` should be an array of field IDs that admins cannot edit. This is useful for restricting access to certain fields even for admin users.
+    </ResponseField>
+
+    <ResponseField name="users" type="Array" default="users">
+      `users` should contain an array of all users and developers in the system. Each user object should have at least `userId` and defined matching `role` or `access.var` properties. `userName` property is recommended, but not required. This is used for assigning commissions to owners and developers.
+    </ResponseField>
+  </Tab>
+</Tabs>
+
+## Commission Object
+
+<Tabs>
+  <Tab title="Template">
+    ```javascript
+    {
+      id: 'unique-commission-id', // Unique identifier for the commission
+      user: 'userId', // Commission creator's unique userId. Should match the userId variable, otherwise the commission will only be accessible in admin/dev views
+      amount: 1000, // Commission amount as a number, or null if not applicable. Defaults to null
+      currency: 'USD', // Currency code for the commission amount as a string. Defaults to 'USD'
+      date: '2023-10-01', // Date of the commission in any valid date/datetime format. Defaults to null
+      status: 'On Hold', // Status of the commission as a string (e.g., 'Completed', 'In Progress', 'On Hold', 'Cancelled')
+      fields: { // Custom fields associated with the commission
+        'id': 'value' // Key-value pairs for custom fields
+      },
+      tasks: [ // Array of tasks associated with the commission
+        {
+          done: false, // Task completion status. Defaults to false
+          content: '' // Task description. Defaults to ''
+        }
+      ],
+      locked: false, // Whether commission is locked from being edited by user. Defaults to false
+      links: [ // Array of links associated with the commission
+        {
+          label: 'Link Label', // Link label
+          url: 'http://example.com' // Link URL
+        }
+      ],
+      assignedTo: ['dev1UserId', 'dev2UserId'] // Array of userIds of the developers assigned to this commission
+    }
+    ```
+  </Tab>
+  <Tab title="Example">
+    ```json
+    {
+      "id": "cmt-001",
+      "user": "john123",
+      "amount": 1500,
+      "currency": "USD",
+      "date": "2024-05-10",
+      "status": "In Progress",
+      "fields": {
+        "name": "Acme Website"
+      },
+      "tasks": [
+        { "done": false, "content": "Initial design mockup" },
+        { "done": true, "content": "Client approval" }
+      ],
+      "locked": false,
+      "links": [
+        { "label": "Project Brief", "url": "https://example.com/brief.pdf" }
+      ],
+      "assignedTo": ["dev42"]
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Custom Text
+
+The tenant `customText` configuration allows you to override default text strings used throughout the <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** interface. This is useful for localization or customizing the user experience. Override any UI string by providing a `customText` object in the tenant configuration:
+
+<Tabs>
+  <Tab title="Supported Text">
+    ```json expandable
+    {
+      "userWelcomeBefore": "Welcome, ",
+      "userWelcomeAfter": "!",
+      "activationTitle": "Activation",
+      "sessionTitle": "Session",
+      "tenantTitle": "Configuration",
+      "authTitle": "Authentication Required",
+      "authDescriptionBefore": "You'll need to log into your ",
+      "authDescriptionAfter": " account before managing your commissions.",
+      "authContinueLabel": "Continue",
+      "adminTitle": "Commission Management",
+      "adminDescription": "Manage commissions created on your platform.",
+      "devTitle": "Commission Management",
+      "devDescription": "Manage commissions assigned to you.",
+      "userTitle": "Commissions",
+      "userDescription": "View and manage your past commissions.",
+      "newCommissionTitle": "New Commission",
+      "newTaskLabel": "New Task",
+      "notFoundTitle": "Not Found",
+      "forbiddenTitle": "Forbidden",
+      "forbiddenMessage": "You do not have permission to edit this commission.",
+      "errorTitle": "Error",
+      "errorMessage": "An unexpected error occurred. Please try again later.",
+      "labelStatus": "Status",
+      "labelStatusDescription": "Required: Commission status.",
+      "labelOwner": "Owner",
+      "labelOwnerDescription": "Required: Commission owner.",
+      "labelAmount": "Amount",
+      "labelAmountDescription": "Optional: Commission amount.",
+      "labelDate": "Date",
+      "labelDateDescription": "Optional: Commission creation date.",
+      "labelAssignedTo": "Assigned To",
+      "labelAssignedToDescription": "Optional: The developer to assign this commission to.",
+      "labelCurrency": "Currency",
+      "labelCurrencyDescription": "Optional: Commission currency.",
+      "labelLocked": "Locked",
+      "labelLockedDescription": "Optional: Whether or not the commission is locked from user editing.",
+      "labelTasks": "Tasks",
+      "labelSendEmail": "Send Email",
+      "labelSendEmailDescription": "Optional: Send an email to the user regarding this update.",
+      "labelRequired": "Required",
+      "labelOptional": "Optional",
+      "youLabel": "(you)",
+      "noneLabel": "None",
+      "backLabel": "Back",
+      "backLabelWithArrow": "← Back",
+      "nextLabel": "Next",
+      "startLabel": "Start",
+      "createLabel": "Create",
+      "returnLabel": "Return",
+      "restartLabel": "Restart",
+      "saveLabel": "Save",
+      "syncLabel": "Sync",
+      "backToLabel": "Back to ",
+      "changesSaved": "Changes saved",
+      "changesRestored": "Changes restored",
+      "clearChanges": "Clear changes",
+      "brandName": "CommTrackr",
+      "createEstimatedTime": "Estimated time to complete: 2 minutes",
+      "commissionNotFound": "The requested commission was not found.",
+      "commissionLocked": "This commission is locked from user editing.",
+      "resourceNotFound": "The requested resource was not found.",
+      "offTitle": "CommTrackr Disabled",
+      "offDescription": "Enable CommTrackr for your app using <code>commtrackr.on();</code>",
+      "tenantMisconfiguredTitle": "Tenant Misconfigured",
+      "tenantMisconfiguredDescription": "Configure your CommTrackr tenant using <code>commtrackr.init({ tenant: { ... } });</code>",
+      "serviceOffline": "Service is currently offline.",
+      "noSession": "No session found. Please enable cookies and try again.",
+      "userNotAuthenticated": "User not authenticated. Please log in and try again.",
+      "serviceNotConfigured": "Service is not properly configured. Please contact the administrator.",
+      "noFieldsConfigured": "No fields configured for commission creation. Please contact the administrator.",
+      "createSuccess": "Your commission was created successfully.",
+      "syncSuccess": "Your commissions were synchronized successfully.",
+      "updateSuccess": "Your commission was updated successfully.",
+      "commissionNotFoundJson": "The requested commission was not found."
+    }
+    ```
+  </Tab>
+  <Tab title="Example">
+    ```javascript twoslash server.js lines icon="square-js"
+    commtrackr.init({
+      tenant: {
+        // ...
+        customText: {
+          brandName: "MyCommissionHub",
+          createLabel: "Add New Commission",
+          statusLabel: "Current Status"
+        }
+      }
+    });
+    ```
+  </Tab>
+</Tabs>
+
+## Handler Functions
+
+The handler hooks give you full control over data persistence:
+
+<Tabs>
+  <Tab title="Summary">
+    | Hook | When Called | Receives | Typical Use |
+    |---|---|---|---|
+    | **create** | After a commission is submitted via the UI | `req`, `data` | Save to a relational DB, trigger a webhook, log analytics |
+    | **update** | When a commission is edited by a `dev` or `admin` | `req`, `data` | Update external records, send notification emails, enforce business rules |
+    | **sync** | When a user clicks **Sync** | `req` | Reconcile session data with a remote source, refresh cached commissions |
+  </Tab>
+  <Tab title="Expanded">
+    <ResponseField name="create" type="Function" default="() => {}">
+      `create` is called when a new commission is created via the UI. It receives the Express `req` object and a `data` object containing the commission fields data array. You can implement your own logic here, such as saving the commission to a database or triggering external workflows.
+
+      Action metadata can be accessed via `data.createdAt` and `data.createdBy`.
+    
+      ```javascript twoslash server.js lines icon="square-js"
+      commtrackr.init({
+        // ...
+        handlers: {
+          create: (req, data) => {
+          },
+        },
+      });
+      ```
+    </ResponseField>
+
+    <ResponseField name="update" type="Function" default="() => {}">
+      `update` is called when an existing commission is updated by a `dev` or `admin`. It receives the Express `req` object and a `data` object containing the updated commission object. You can implement your own logic here, such as updating external records or sending notification emails.
+
+      The constant `data.id` contains the unique commission ID.
+
+      Action metadata can be accessed via `data.updatedAt`, `data.updatedBy`, and `data.sendEmail`.
+
+      Updated metadata can be accessed via `data.user`, `data.amount`, `data.currency`, `data.date`, `data.status`, `data.locked`, and `data.assignedTo`.
+
+      Updated fields can be accessed via `data.fields`.
+
+      Updated tasks can be accessed via `data.tasks`.
+    
+      ```javascript twoslash server.js lines icon="square-js"
+      commtrackr.init({
+        // ...
+        handlers: {
+          update: (req, data) => {
+          },
+        },
+      });
+      ```
+    </ResponseField>
+
+    <ResponseField name="sync" type="Function" default="() => {}">
+      `sync` is called when the user manually triggers a sync by clicking the **Sync** button in the UI. It receives the Express `req` object. You can implement your own logic here, such as syncing your commissions session variable with an external source.
+    
+      ```javascript twoslash server.js lines icon="square-js"
+      commtrackr.init({
+        // ...
+        handlers: {
+          sync: (req) => {
+          },
+        },
+      });
+      ```
+    </ResponseField>
+  </Tab>
+</Tabs>

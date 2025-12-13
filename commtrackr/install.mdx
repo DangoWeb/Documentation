@@ -1,0 +1,152 @@
+## Prerequisites
+
+- <Icon icon="npm" /> **NPM** installed on your system.
+- <Icon icon="node-js" /> **Node.js** v14 or higher installed on your system.
+- <Icon icon="/icons/commtrackr/expressjs.svg" className="islight nomargintop" /><Icon icon="/icons/commtrackr/expressjs-dark.svg" className="isdark" /> **Express.js** ([`express`](https://npmjs.com/package/express)) on <Icon icon="node-js" /> **Node.js**.
+- [`express-session`](https://npmjs.com/package/express-session) for session management.
+- A valid session store (e.g., [`express-mysql-session`](https://npmjs.com/package/express-mysql-session) for <Icon icon="/icons/directadmin/databases.svg" /> **MySQL**).
+
+```bash Install Prerequisites lines icon="terminal"
+npm install express express-session express-mysql-session
+```
+
+## Install
+
+Any co-dependencies will be installed automatically.
+
+```bash Install CommTrackr lines icon="terminal"
+npm install commtrackr
+```
+
+## Quick Start
+
+This example demonstrates how to set up <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** in an <Icon icon="/icons/commtrackr/expressjs.svg" className="islight nomargintop" /><Icon icon="/icons/commtrackr/expressjs-dark.svg" className="isdark" /> **Express.js** application using a <Icon icon="/icons/directadmin/databases.svg" /> **MySQL** session store.
+
+```javascript twoslash server.js lines icon="square-js" expandable
+const express = require('express');
+const session = require("express-session");
+const MySQLStore = require('express-mysql-session')(session); // Use a MySQL session store
+const sessionStore = new MySQLStore({
+  host: '',
+  port: 3306,
+  user: '',
+  password: '',
+  database: ''
+});
+app.use(session({
+  name: '',
+  key: '',
+  secret: '',
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false
+}));
+
+const app = express();
+
+const commtrackr = require('commtrackr'); // Import the commtrackr package
+app.use('/commtrackr', commtrackr.routes); // Mount routes to /commtrackr path
+commtrackr.init({ // Initialize CommTracker with configurations
+  tenant: {
+    slug: 'commtrackr', // Unique identifier for the tenant
+    name: 'CommTrackr', // Name of the tenant
+    metaTitle: 'CommTrackr', // Name of the tenant for meta title tags
+    description: 'Easily plan, manage, and track client commissions.', // Description of the tenant
+    logo: 'http://localhost:3000/commtrackr/logo.png', // Tenant logo image
+    themeColor: '#ffffff', // Tenant theme color (optional)
+    forceDarkMode: false, // Force dark mode for the tenant (optional)
+    banner: 'http://localhost:3000/commtrackr/banner_public.png', // Tenant banner image
+    domain: 'http://localhost:3000', // Domain for the tenant, including protocol
+    path: '/commtrackr', // Path that CommTracker is mounted on
+    auth: {
+      enabled: false, // Enable or disable authentication
+      provider: '', // Recognizable name of authentication provider
+      url: '', // URL to redirect to for authentication
+    },
+    stylesheets: [], // Additional stylesheets to include
+    scripts: [], // Additional scripts to include
+    customText: {} // Custom text overrides for the tenant; see "Custom Text" section below
+  },
+  vars: {
+    userId: 'username', // req.session object variable for unique user identification
+    userName: 'Name', // req.session object variable for user name
+    role: 'role', // req.session object variable for user role
+    roleAliases: { // Use if your role names differ from 'admin', 'dev', or 'user'
+      user: ['user', 'standard', 'basic'], // Aliases for user roles
+      dev: ['dev', 'developer'], // Aliases for developer roles
+      admin: ['admin', 'administrator', 'superuser'] // Aliases for admin roles
+    },
+    access: { // Alternative access control using numeric levels
+      var: 'access', // req.session object variable for access level
+      user: [0], // Access levels for standard users
+      dev: [1], // Access levels for developers
+      admin: [2] // Access levels for admins
+    },
+    commissions: 'commissions', // req.session object variable for user commissions array
+    possibleStatuses: [ // Possible commission status strings
+      {
+        label: 'Completed', // Status label
+        value: 'Completed' // Status value
+      }, {
+        label: 'In Progress',
+        value: 'In Progress'
+      }, {
+        label: 'On Hold',
+        value: 'On Hold'
+      }, {
+        label: 'Cancelled',
+        value: 'Cancelled'
+      }
+    ],
+    disableFieldEditing: ['amount', 'currency'], // Array of field IDs that admins cannot edit
+    users: 'users' // req.session object variable for all users array
+  },
+  fields: [
+    {
+      id: 'name', // Unique identifier for the field. ID 'user' is reserved by the system and may not be used here
+      type: 'text', // Field type ('text', 'number', 'date', 'textarea', 'checkbox', 'radio', 'select', 'multiselect')
+      label: 'Website Name', // Field label
+      description: 'The name of the website or project.', // Field description
+      placeholder: 'e.g. My Website', // Placeholder text for the field
+      required: true, // Whether the field is required
+      options: [ // Options for select, radio, and multiselect fields
+        {
+          label: 'Option 1', // Option label
+          value: 'option1' // Option value
+        }
+      ],
+    },
+  ],
+  handlers: {
+    create: (req, data) => {
+      // Custom handler function for processing commission data
+      // This function is called when a commission is created
+      // You can implement your own logic here, such as saving to a database
+      // data contains the commission fields data array
+      // Action metadata can be accessed via data.createdAt and data.createdBy
+    },
+    update: (req, data) => {
+      // Custom handler function for updating commission data
+      // This function is called when a commission is updated
+      // You can implement your own logic here, such as saving to a database
+      // data contains the updated commission object
+      // The constant data.id contains the unique commission ID
+      // Action metadata can be accessed via data.updatedAt, data.updatedBy, and data.sendEmail
+      // Updated metadata can be accessed via data.user, data.amount, data.currency, data.date, data.status, data.locked, and data.assignedTo
+      // Updated fields can be accessed via data.fields
+      // Updated tasks can be accessed via data.tasks
+    },
+    sync: (req) => {
+      // Custom handler function for syncing user's commissions
+      // This function is called when the user manually triggers a sync
+      // You can implement your own logic here, such as syncing your commissions session variable
+    },
+  },
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
+```
+
+More detail on how to configure each option can be found in [Set Up](/commtrackr/set-up).

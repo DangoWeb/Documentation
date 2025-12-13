@@ -1,0 +1,6 @@
+## Deployment Tips
+
+- **HTTPS**: Always serve the app over TLS, especially when session cookies contain sensitive identifiers. However, <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** can operate over HTTP in trusted internal networks or development environments.
+- **Session Store**: Use a production‑grade store such as <Icon icon="/icons/directadmin/databases.svg" /> **MySQL** rather than the default memory store.
+- **Environment Variables**: Keep secrets (`session.secret`, DB credentials) out of source control.
+- **Scaling**: Because <Icon icon="/icons/commtrackr/commtrackr.svg" className="islight" /><Icon icon="/icons/commtrackr/commtrackr-dark.svg" className="isdark" /> **CommTrackr** stores data in the session, ensure your session store is shared across all server instances (e.g., a central <Icon icon="/icons/directadmin/databases.svg" /> **MySQL** cluster).
