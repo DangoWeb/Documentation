@@ -1,0 +1,29 @@
+<Callout icon="apple" iconType="regular">Using iOS or MacOS? Generate and download a custom configuration file that adds your email account to your Mail app.</Callout>
+
+## SMTP
+
+SMTP is used for sending mail from your email client to the mail server. Below are the SMTP settings for connecting to your Mail Hosting email accounts:
+
+- **SMTP Host Name:** `mail.dangoweb.com`
+- **SMTP Server Port:**
+    - SSL Disabled: `587` (less secure, higher success)
+    - SSL Enabled: `465` (more secure, lower success)
+- **SMTP User Name:** Your full email address (e.g., `admin@dangoweb.com`)
+- **SMTP Password:** Your email account password
+- **SMTP Encryption:** SSL/TLS enabled or disabled correlating to the port used (465 for SSL, 587 for non-SSL)
+- **SMTP Authentication:** Password
+
+### SMTP Fallback Options
+
+In the event that the primary SMTP server is unavailable, attempt to connect with hosts `cname.dangoweb.com` then `da.dangoweb.com`, or disable SSL and use port `587` for sending mail.
+
+## IMAP
+
+IMAP is used for receiving mail from the mail server to your email client. Below are the IMAP settings for connecting to your Mail Hosting email accounts:
+
+- **IMAP Host Name:** `mail.dangoweb.com`
+- **IMAP Server Port:**
+    - SSL Disabled: `143` (less secure, higher success)
+    - SSL Enabled: `993` (more secure, lower success)
+- **IMAP User Name:** Your full email address (e.g., `admin@dangoweb.com`)
+- **IMAP Password:** Your email account password
